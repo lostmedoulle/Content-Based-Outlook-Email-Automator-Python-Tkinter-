@@ -17,23 +17,31 @@ Prerequisites:
 Microsoft Outlook must be installed and configured on your machine.
 
 Python Installation and Setup Guide
-Follow these steps to download and install the .exe on a Windows system:
 
-Extract the zip file to a local folder.
-Place all code files (.py) and dist within the same folder as the executable (.exe).
-Run the executable.
-Distribution on Other Machines
-Share the ZIP file.
-Alternatively, compress all items into a ZIP format, distribute, and unzip.
-Copying a Script from GitHub
-To copy a script from GitHub, follow these steps:
+Installation
+To get started, ensure you have Python installed on your system. Follow these steps to install the required dependencies for this project.
 
-Navigate to the GitHub repository you wish to download.
-Click the 'Code' button, then select 'Download ZIP' from the dropdown menu.
-Once downloaded, extract the ZIP file using your file decompression tool to access the content.
-Configuration:
-Update outlook_parameters.xlsx in the configuration directory to set up your filters and destination folders according to your needs.
+Clone the Repository (if applicable):
 
+bash
+Code kopieren
+git clone https://github.com/your-username/your-repository.git
+cd your-repository
+Install Dependencies: All necessary dependencies are listed in the requirements.txt file. To install them, use the following command:
+
+bash
+Code kopieren
+pip install -r requirements.txt
+This command will install all required packages specified in the requirements.txt file.
+
+Verify Installation: After installation, you can verify that the dependencies are installed correctly by running:
+
+bash
+Code kopieren
+python -m pip check
+
+
+Update Excel-File
 Folder Destination	Filter_1	Filter_2	Filter_3	Filter_4	Filter_5
 folder/	LSXXXX	TVA-CH			
 folder/sub_folder	LS0000				
@@ -43,42 +51,122 @@ Refer to logs/outlook_process_log.log for details on script execution and issues
 Additional Resources
 For more information on the libraries and tools used in this project:
 
-Part of the pywin32 library, which provides access to the Win32 API, including COM support.
-bash
-Code kopieren
-pip install pywin32
-A powerful data analysis and manipulation library for Python.
-bash
-Code kopieren
-pip install pandas
-A pure Python library built as a PDF toolkit. It can extract information, split documents page by page, merge documents, crop pages, etc.
-bash
-Code kopieren
-pip install PyPDF2
-easyocr An OCR library for Python that supports more than 40 languages.
-bash
-Code kopieren
-pip install easyocr
-fitz / PyMuPDF A Python binding for MuPDF – a lightweight PDF and XPS viewer.
-bash
-Code kopieren
-pip install PyMuPDF
-numpy A fundamental package for scientific computing with Python. It adds support for large multidimensional arrays and matrices, along with a large collection of high-level mathematical functions.
-bash
-Code kopieren
-pip install numpy
-Pillow (PIL Fork) Python Imaging Library adds image processing capabilities to your Python interpreter.
-bash
-Code kopieren
-pip install Pillow
+
 Licenses
 Each component of this project relies on software under specific open-source licenses. Here is a list of these dependencies and their licenses:
 
-Jinja2 (3.1.3) - BSD License: Allows commercial use with minimal restrictions.
-MarkupSafe (2.1.5) - BSD License: Permissive, commercial-friendly license with minimal obligations.
-PyPDF2 (3.0.1) - BSD License: Free to use commercially, no copyleft requirement.
-PyYAML (6.0.1) - MIT License: Very permissive, allowing commercial use and modification without significant restrictions.
-[List of additional licenses and their details continues]
+Jinja2 (3.1.3)
+
+License: BSD License
+Usage: Allows commercial use with minimal restrictions. Requires the preservation of copyright notices.
+MarkupSafe (2.1.5)
+
+License: BSD License
+Usage: Permissive, commercially friendly license with minimal obligations.
+PyPDF2 (3.0.1)
+
+License: BSD License
+Usage: Free for commercial use. No copyleft requirements.
+PyYAML (6.0.1)
+
+License: MIT License
+Usage: Very permissive, allows commercial use and modification without significant restrictions.
+certifi (2024.2.2)
+
+License: Mozilla Public License 2.0 (MPL 2.0)
+Usage: Commercial use permitted. Modifications to licensed files must be shared under the same license.
+cffi (1.16.0)
+
+License: MIT License
+Usage: May be used commercially with few restrictions.
+charset-normalizer (3.3.2)
+
+License: MIT License
+Usage: Minimal restrictions on usage, including commercial use. Easy to integrate without legal complexity.
+cryptography (42.0.5)
+
+License: Apache Software License; BSD License
+Usage: Dual license for flexibility, supporting commercial use with requirements for notice and conditions as stated in the Apache License.
+easyocr (1.7.1)
+
+License: Apache License 2.0
+Usage: Allows commercial use with conditions regarding modifications and notices.
+et-xmlfile (1.1.0)
+
+License: MIT License
+Usage: Free for commercial use, including modification and distribution.
+filelock (3.13.4)
+
+License: The Unlicense
+Usage: Public domain software. No usage restrictions.
+fsspec (2024.3.1)
+
+License: BSD License
+Usage: Permissive, suitable for commercial projects. Minimal compliance requirements.
+idna (3.7)
+
+License: BSD License
+Usage: Minimal restrictions; commercial use permitted.
+imageio (2.34.0)
+
+License: BSD License
+Usage: Commercial-friendly with few restrictions.
+lazy_loader (0.4)
+
+License: BSD License
+Usage: Commercial use permitted with minimal obligations.
+licenses (0.6.1)
+
+License: Public Domain
+Usage: No copyright; free for any use.
+mpmath (1.3.0)
+
+License: BSD License
+Usage: Free to use, modify, and distribute commercially.
+networkx (3.3)
+
+License: BSD License
+Usage: Commercial use permitted; one of the most permissive licenses.
+ninja (1.11.1.1)
+
+License: Apache Software License; BSD License
+Usage: Dual licensing offers flexibility for commercial use.
+numpy (1.26.4)
+
+License: BSD License
+Usage: Commercial use with minimal restrictions; widely used in commercial scientific computing.
+opencv-python (4.9.0.80)
+
+License: Apache Software License
+Usage: Commercial use permitted with requirements for notice and conditions as stated.
+openpyxl (3.1.2)
+
+License: MIT License
+Usage: Very permissive for commercial integration and distribution.
+packaging (24.0)
+
+License: Apache Software License; BSD License
+Usage: Dual licensing, enhancing usage flexibility in commercial applications.
+pandas (2.2.2)
+
+License: BSD License
+Usage: Permissive, well-suited for commercial use in data analysis.
+pdf2image (1.17.0)
+
+License: MIT License
+Usage: Very permissive, allowing commercial use and distribution without major restrictions.
+pdfminer.six (20231228)
+
+License: MIT License
+Usage: Allows extensive modification and commercial distribution.
+pdfplumber (0.11.0)
+
+License: MIT License
+Usage: Minimal restrictions, suitable for commercial projects involving PDF processing.
+pillow (10.3.0)
+
+License: Historical Permission Notice and Disclaimer (HPND)
+Usage: Permissive, with historical permissions granting significant freedom for usage.
 
 Disclaimer
 By using this software, you, the user, agree to the following:
