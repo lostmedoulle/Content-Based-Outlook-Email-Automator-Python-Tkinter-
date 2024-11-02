@@ -11,6 +11,7 @@ import numpy as np
 import pdfplumber
 import pythoncom
 import time
+import threading
 
 class GUIHandler(logging.Handler):
     def __init__(self, callback):
@@ -56,11 +57,16 @@ class OutlookProcessor:
     
     def connect_to_outlook(self):
         pythoncom.CoInitialize()  # Initialize COM library
-        self.outlook = win32com.client.Dispatch("Outlook.Application").GetNamespace("MAPI")
-
+        try:
+            self.outlook = win32com.client.Dispatch("Outlook.Application").GetNamespace("MAPI")
+            self.logger.info("Successfully connected to Outlook.")
+        except Exception as e:
+            self.logger.error(f"Failed to connect to Outlook: {e}. It may be necessary to close Outlook and try again.")
+    
     def disconnect_from_outlook(self):
         """Uninitialize COM library to clean up resources."""
         pythoncom.CoUninitialize()
+        self.logger.info("Disconnected from Outlook.")
 
     def extract_text_with_pdf_reader(self, file_path):
         text = ""
@@ -71,6 +77,7 @@ class OutlookProcessor:
                     page_text = page.extract_text()
                     if page_text:
                         text += page_text
+            self.logger.info(f"Text extracted from {os.path.basename(file_path)} using PdfReader.")
         except Exception as e:
             self.logger.error(f"Error reading PDF file {file_path}: {e}")
             return None
@@ -94,6 +101,7 @@ class OutlookProcessor:
                     results = reader.readtext(np.array(pil_images), detail=0)
                     text += " ".join(results) + " "
 
+            self.logger.info(f"Text extracted from {os.path.basename(file_path)} using easyocr.")
         except Exception as e:
             self.logger.error(f"Error with OCR on file {abs_path}: {e}")
             return None
@@ -104,14 +112,14 @@ class OutlookProcessor:
         patterns_matched = []
         for _, config_row in config_rows.iterrows():
             filters = [config_row[col] for col in self.required_columns[2:] if not pd.isna(config_row[col])]
-            self.logger.info(f"Text extracted from '{message.Subject}'")
+            self.logger.info(f"Checking extracted text from email '{message.Subject}' against filters.")
             match = all(re.search(pattern, text, re.IGNORECASE) for pattern in filters)
             if match:
                 destination_path = config_row['Folder_destination']
                 target_folder = self.find_target_folder(inbox, destination_path)
                 if target_folder:
                     patterns_matched.append((message, target_folder))
-                    self.logger.info(f"Email with subject '{message.Subject}' matched all filters and will be moved to {destination_path}")
+                    self.logger.info(f"Email with subject '{message.Subject}' matched all filters and will be moved to {destination_path}.")
                     break
         if not patterns_matched:
             self.logger.info(f"No matching patterns found for the email with subject '{message.Subject}'.")
@@ -122,6 +130,7 @@ class OutlookProcessor:
         try:
             for folder_name in path.split('/'):
                 current_folder = current_folder.Folders[folder_name]
+            self.logger.info(f"Successfully navigated to folder: {path}")
         except Exception as e:
             self.logger.error(f"Failed to navigate to {path}: {e}")
             return None
@@ -263,11 +272,24 @@ class OutlookProcessor:
 
         self.logger.info(f"Processed {email_count} emails.")
 
-
     def execute_once(self):
         self.process_emails()
 
-    def execute_periodically(self, interval=300):
-        while True:
-            self.process_emails()
-            time.sleep(interval)
+    def execute_periodically(self, interval=600):
+        self.stop_event = threading.Event()  # Create a stop event to allow stopping the loop
+        try:
+            while not self.stop_event.is_set():
+                self.process_emails()  # Execute the email processing
+                self.logger.info("Processing completed. Starting countdown for the next execution.")
+
+                countdown = interval
+                while countdown > 0 and not self.stop_event.is_set():
+                    time.sleep(1)
+                    countdown -= 1
+                    if countdown % 120 == 0:  # Log every 2 minutes (120 seconds)
+                        minutes_left = countdown // 60
+                        self.logger.info(f"{minutes_left} minutes left until the next execution.")
+        except Exception as e:
+            self.logger.error(f"An error occurred during periodic execution: {e}")
+        finally:
+            self.logger.info("Periodic execution has been stopped.")
