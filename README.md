@@ -52,8 +52,8 @@ python -m pip check
 
 Update Excel-File
 Folder Destination	Filter_1	Filter_2	Filter_3	Filter_4	Filter_5
-folder/	LSXXXX	TVA-CH			
-folder/sub_folder	LS0000				
+folder/	abcd	TVA-CH			
+folder/sub_folder	abcd				
 Logging:
 Refer to logs/outlook_process_log.log for details on script execution and issues encountered.
 
