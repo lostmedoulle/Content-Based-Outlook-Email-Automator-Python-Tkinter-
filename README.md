@@ -7,8 +7,12 @@ This project addresses the challenge of managing large volumes of emails with PD
 Method and Results
 The script uses Microsoft’s Outlook API through the win32com.client library to access and manipulate emails. For PDF attachments, it first attempts to extract text using PyPDF2, a Python library capable of directly reading text from PDFs that are not image-based. If PyPDF2 fails to extract text (common with scanned documents), the script then uses EasyOCR, an OCR tool capable of interpreting text from images.
 
+--
+if you want to support my work 
 
 <a href="buymeacoffee.com/lostmedoulle" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
+
+--
 
 
 
