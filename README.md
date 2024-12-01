@@ -99,7 +99,8 @@ Managing emails with attachments in a professional setting can be time-consuming
 
 ### **GUI Interface**
 - The GUI is designed for ease of use, with simple buttons and clear log displays.
-![GUI Screenshot](assets/gui_screenshot.png)
+![GUI Screenshot](Screenshot_1_tkinterhomeconfig.png)
+
 
 ### **Email Processing in Action**
 - Watch the automation in real-time as the application processes emails and attachments.
