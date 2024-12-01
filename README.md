@@ -1,11 +1,120 @@
+Automating Email Processing in Outlook: Efficiently Extract Text from PDF Attachments Using OCR
+
+
+Table of Contents
+Introduction
+Motivation
+Features
+Installation
+Usage
+Excel Configuration
+Repository Structure
+Logging
+Licenses
+Support
+Disclaimer
+Acknowledgments
+
+
+Introduction
+This project automates the processing of emails in Microsoft Outlook by extracting text from PDF attachments, including scanned PDFs, using OCR technology. Users can configure specific keywords for sorting and processing emails based on an Excel file.
+
+
+Motivation
+Handling large email volumes with PDF attachments is time-consuming and error-prone in professional settings. This tool automates the task, reducing human effort and improving accuracy and efficiency.
+
+
+Features
+PDF text extraction with and without OCR.
+Automated sorting and classification of emails based on user-defined rules.
+Periodic email processing with configurable intervals.
+Easy-to-use graphical user interface (GUI) built with Tkinter.
+
+
+Installation
+Prerequisites
+Microsoft Outlook installed and configured.
+Python 3.x installed on your system.
+
+
+Setup Instructions
+Clone the repository:
+git clone https://github.com/your-username/your-repository.git
+cd your-repository
+
+Install the required dependencies:
+pip install -r requirements.txt
+
+Verify the installation:
+python -m pip check
+
+Usage
+Steps to Run the Application
+Set Up the Excel File:
+
+Open the outlook_parameters_mailbox.xlsx file.
+Define keywords in the appropriate columns based on your filtering needs (see Excel Configuration for details).
+Run the GUI:
+Launch the GUI by running the Outlook_GUI.py file:
+python Outlook_GUI.py
+
+
+This will open a graphical interface for managing email processing.
+Load the Configuration:
+
+Use the GUI to load the updated Excel configuration file by selecting it through the interface.
+Start Processing:
+
+Click "Exécuter une fois" to process emails once.
+Click "Exécuter toutes les 10 minutes" to start periodic processing.
+Close Outlook:
+
+When the script runs, Outlook will automatically close to avoid session conflicts. Emails will be processed in the background.
+Stop Processing:
+
+Click "Arrêter" to stop periodic processing.
+Click "Quitter" to exit the application.
+
+
+Excel Configuration
+The outlook_parameters_mailbox.xlsx file is used to define sorting rules. Configure it as follows:
+
+Folder Destination	Filter_1	Filter_2	Filter_3	Filter_4	Filter_5
+folder/	keyword1	keyword2			
+folder/sub_folder	keyword3				
+Folder Destination: Specify the folder where emails matching the filters should be moved.
+Filter Columns: Define keywords for filtering emails based on the content of PDF attachments.
+
+Repository Structure
+├── LICENSE                       # License file for the project
+├── Outlook_GUI.py                # GUI interface script for the application
+├── README.md                     # Project documentation
+├── company_logo_client.png       # Company logo used in the GUI
+├── core_app.py                   # Core logic of the application
+├── outlook_parameters_mailbox.xlsx # Configuration file for mailbox rules
+├── outlook_process_log.log       # Log file for email processing
+├── requirements.txt              # List of dependencies
+
+
+Logging
+Execution logs are saved in outlook_process_log.log. These logs provide details about:
+
+Successfully processed emails.
+Errors encountered during processing.
+Debugging information for troubleshooting.
+
+
+Licenses
+This project leverages several open-source libraries under permissive licenses, such as:
+
+PyPDF2: BSD License
+EasyOCR: Apache License 2.0
+pandas: BSD License
+pdfplumber: MIT License
+Refer to requirements.txt for the complete list of dependencies and their licenses.
 Project Title: Outlook Automation with PDF Text Extraction with and without OCR
 Automation of Email Processing in Outlook: Extracting Text from PDF Attachments with and without OCR
 
-Motivation
-This project addresses the challenge of managing large volumes of emails with PDF attachments in professional environments, such as legal, academic, or corporate settings. Manually sorting and classifying these emails can be time-consuming and error-prone. This script automates the process of reading emails, extracting text from PDF attachments, and organizing emails into specified folders based on the content of the attachments. It significantly reduces manual work and improves efficiency by using text extraction through Optical Character Recognition (OCR) when necessary.
-
-Method and Results
-The script uses Microsoft’s Outlook API through the win32com.client library to access and manipulate emails. For PDF attachments, it first attempts to extract text using PyPDF2, a Python library capable of directly reading text from PDFs that are not image-based. If PyPDF2 fails to extract text (common with scanned documents), the script then uses EasyOCR, an OCR tool capable of interpreting text from images.
 
 --
 if you want to support my work 
@@ -13,7 +122,16 @@ if you want to support my work
 <a href="https://buymeacoffee.com/lostmedoulle" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
 
 --
+Disclaimer
+This software is provided "as is," without any warranty. Users are responsible for ensuring compliance with data protection laws and handling sensitive information appropriately.
 
+Acknowledgments
+Thanks to the developers of the following libraries and tools:
+
+PyPDF2: For PDF text extraction.
+EasyOCR: For OCR functionality.
+pandas: For data manipulation.
+Tkinter: For building the GUI.
 
 
 Repository Overviewa
@@ -60,140 +178,8 @@ Refer to logs/outlook_process_log.log for details on script execution and issues
 Additional Resources
 For more information on the libraries and tools used in this project:
 
-
 Licenses
 Each component of this project relies on software under specific open-source licenses. Here is a list of these dependencies and their licenses:
-
-Jinja2 (3.1.3)
-
-License: BSD License
-Usage: Allows commercial use with minimal restrictions. Requires the preservation of copyright notices.
-MarkupSafe (2.1.5)
-
-License: BSD License
-Usage: Permissive, commercially friendly license with minimal obligations.
-PyPDF2 (3.0.1)
-
-License: BSD License
-Usage: Free for commercial use. No copyleft requirements.
-PyYAML (6.0.1)
-
-License: MIT License
-Usage: Very permissive, allows commercial use and modification without significant restrictions.
-certifi (2024.2.2)
-
-License: Mozilla Public License 2.0 (MPL 2.0)
-Usage: Commercial use permitted. Modifications to licensed files must be shared under the same license.
-cffi (1.16.0)
-
-License: MIT License
-Usage: May be used commercially with few restrictions.
-charset-normalizer (3.3.2)
-
-License: MIT License
-Usage: Minimal restrictions on usage, including commercial use. Easy to integrate without legal complexity.
-cryptography (42.0.5)
-
-License: Apache Software License; BSD License
-Usage: Dual license for flexibility, supporting commercial use with requirements for notice and conditions as stated in the Apache License.
-easyocr (1.7.1)
-
-License: Apache License 2.0
-Usage: Allows commercial use with conditions regarding modifications and notices.
-et-xmlfile (1.1.0)
-
-License: MIT License
-Usage: Free for commercial use, including modification and distribution.
-filelock (3.13.4)
-
-License: The Unlicense
-Usage: Public domain software. No usage restrictions.
-fsspec (2024.3.1)
-
-License: BSD License
-Usage: Permissive, suitable for commercial projects. Minimal compliance requirements.
-idna (3.7)
-
-License: BSD License
-Usage: Minimal restrictions; commercial use permitted.
-imageio (2.34.0)
-
-License: BSD License
-Usage: Commercial-friendly with few restrictions.
-lazy_loader (0.4)
-
-License: BSD License
-Usage: Commercial use permitted with minimal obligations.
-licenses (0.6.1)
-
-License: Public Domain
-Usage: No copyright; free for any use.
-mpmath (1.3.0)
-
-License: BSD License
-Usage: Free to use, modify, and distribute commercially.
-networkx (3.3)
-
-License: BSD License
-Usage: Commercial use permitted; one of the most permissive licenses.
-ninja (1.11.1.1)
-
-License: Apache Software License; BSD License
-Usage: Dual licensing offers flexibility for commercial use.
-numpy (1.26.4)
-
-License: BSD License
-Usage: Commercial use with minimal restrictions; widely used in commercial scientific computing.
-opencv-python (4.9.0.80)
-
-License: Apache Software License
-Usage: Commercial use permitted with requirements for notice and conditions as stated.
-openpyxl (3.1.2)
-
-License: MIT License
-Usage: Very permissive for commercial integration and distribution.
-packaging (24.0)
-
-License: Apache Software License; BSD License
-Usage: Dual licensing, enhancing usage flexibility in commercial applications.
-pandas (2.2.2)
-
-License: BSD License
-Usage: Permissive, well-suited for commercial use in data analysis.
-pdf2image (1.17.0)
-
-License: MIT License
-Usage: Very permissive, allowing commercial use and distribution without major restrictions.
-pdfminer.six (20231228)
-
-License: MIT License
-Usage: Allows extensive modification and commercial distribution.
-pdfplumber (0.11.0)
-
-License: MIT License
-Usage: Minimal restrictions, suitable for commercial projects involving PDF processing.
-pillow (10.3.0)
-
-License: Historical Permission Notice and Disclaimer (HPND)
-Usage: Permissive, with historical permissions granting significant freedom for usage.
-
-Disclaimer
-By using this software, you, the user, agree to the following:
-
-No Warranty
-The user acknowledges that this script is provided "as is" and that the developers give no warranties, express or implied, regarding the functionality of the script or its fitness for a particular purpose. The user assumes all risks associated with operating the script.
-
-Data Processing
-The script interacts with Microsoft Outlook and processes potentially sensitive information. The user is solely responsible for ensuring all data handling complies with applicable data privacy and protection laws.
-
-Modifications
-Any modifications made by the user to the script that cause system malfunction or data loss will be the responsibility of the user, and the developers disclaim any liability for such issues.
-
-Compliance
-The user is responsible for using the script in compliance with all applicable laws, including, but not limited to, data protection and privacy laws.
-
-Limitation of Liability
-In no event shall the developers be liable for direct, indirect, incidental, consequential, special, or exemplary damages resulting from the use or inability to use the software, even if advised of the possibility of such damages.
 
 Acknowledgments
 By downloading, copying, installing, or otherwise using this software, you acknowledge that you have read, understood, and agree to be bound by the terms of this disclaimer. If you do not agree to these terms, you are not authorized to use the software.
