@@ -1,134 +1,147 @@
-Automating Email Processing in Outlook: Efficiently Extract Text from PDF Attachments Using OCR
+**Automating Email Processing in Outlook: Efficiently Extract Text from PDF Attachments with and without OCR**
+
+![Python](https://img.shields.io/badge/Python-3.x-blue) 
+![License](https://img.shields.io/badge/License-MIT-green) 
+![Dependencies](https://img.shields.io/badge/Dependencies-Up%20to%20Date-brightgreen)
+![Build](https://img.shields.io/badge/Build-Passing-brightgreen)
+![Last Commit](https://img.shields.io/github/last-commit/your-username/your-repository)
+
+---
+
+## **Table of Contents**
+- [Introduction](#introduction)
+- [Motivation](#motivation)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Excel Configuration](#excel-configuration)
+- [Screenshots](#screenshots)
+- [Logging](#logging)
+- [Support](#support)
+- [Acknowledgments](#acknowledgments)
+- [License](#license)
+
+---
+
+## **Introduction**
+
+This project automates email processing in Microsoft Outlook by extracting text from PDF attachments. It supports both native PDF text extraction and OCR-based extraction for scanned documents, reducing manual effort and improving productivity.
+
+---
+
+## **Motivation**
+
+Managing emails with attachments in a professional setting can be time-consuming. This project automates the tedious process of sorting and classifying emails, saving time and increasing accuracy for tasks like legal document processing, research workflows, and corporate operations.
+
+---
+
+## **Features** ✨
+
+- 📄 Extract text from PDFs (including scanned documents using OCR).  
+- 📥 Automatically sort emails into folders based on keywords.  
+- ⏲️ Process emails once or at periodic intervals (every 10 minutes).  
+- 🖥️ Intuitive GUI built with Tkinter.  
+- 🔍 Comprehensive logging for all operations.  
+- 🧩 Extensible rules: Configure and load dynamic Excel rules for email sorting.
+
+---
+
+## **Installation**
+
+### **Prerequisites**
+- Microsoft Outlook installed and configured.
+- Python 3.x installed on your system.
+
+### **Setup Instructions**
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/your-repository.git
+   cd your-repository
 
 
-Table of Contents
-Introduction
-Motivation
-Features
-Installation
-Usage
-Excel Configuration
-Repository Structure
-Logging
-Licenses
-Support
-Disclaimer
-Acknowledgments
+## **Usage**
 
+1. **Set Up Excel File**:
+   - Open the `outlook_parameters_mailbox.xlsx` file.
+   - Define your folder destinations and keywords for sorting and processing emails.
 
-Introduction
-This project automates the processing of emails in Microsoft Outlook by extracting text from PDF attachments, including scanned PDFs, using OCR technology. Users can configure specific keywords for sorting and processing emails based on an Excel file.
+   **Example Excel Configuration**:
+   | **Folder Destination** | **Filter_1** | **Filter_2** | **Filter_3** | **Filter_4** | **Filter_5** |
+   |-------------------------|--------------|--------------|--------------|--------------|--------------|
+   | folder/                | invoice      | payment      | contract     |              |              |
+   | folder/sub_folder      | tax          | report       |              |              |              |
 
+2. **Launch the Application**:
+   - Start the GUI by running the following command:
+     ```bash
+     python Outlook_GUI.py
+     ```
+   - In the GUI interface:
+     - Use the **Browse** button to load your Excel configuration file.
+     - View logs and configurations directly in the main tab.
 
-Motivation
-Handling large email volumes with PDF attachments is time-consuming and error-prone in professional settings. This tool automates the task, reducing human effort and improving accuracy and efficiency.
+3. **Processing Modes**:
+   - **"Exécuter une fois"**: Processes all emails once based on the configured rules.
+   - **"Exécuter toutes les 10 minutes"**: Continuously processes emails every 10 minutes.
 
+4. **Close Outlook**:
+   - To ensure a conflict-free environment, the application will automatically close Outlook during processing. Emails are processed in the background.
 
-Features
-PDF text extraction with and without OCR.
-Automated sorting and classification of emails based on user-defined rules.
-Periodic email processing with configurable intervals.
-Easy-to-use graphical user interface (GUI) built with Tkinter.
+5. **Stop Processing**:
+   - Use the **"Arrêter"** button in the GUI to stop any ongoing processing tasks.
 
+6. **Exit the Application**:
+   - Click the **"Quitter"** button to safely close the application.
 
-Installation
-Prerequisites
-Microsoft Outlook installed and configured.
-Python 3.x installed on your system.
+---
 
+## **Screenshots**
 
-Setup Instructions
-Clone the repository:
-git clone https://github.com/your-username/your-repository.git
-cd your-repository
+### **GUI Interface**
+- The GUI is designed for ease of use, with simple buttons and clear log displays.
+![GUI Screenshot](assets/gui_screenshot.png)
 
-Install the required dependencies:
-pip install -r requirements.txt
+### **Email Processing in Action**
+- Watch the automation in real-time as the application processes emails and attachments.
+![Workflow GIF](assets/email_processing_demo.gif)
 
-Verify the installation:
-python -m pip check
+### **Repository Structure**
+    ```bash
+    ├── LICENSE                       # License file for the project
+    ├── Outlook_GUI.py                # GUI interface script for the application
+    ├── README.md                     # Project documentation
+    ├── company_logo_client.png       # Company logo used in the GUI
+    ├── core_app.py                   # Core logic of the application
+    ├── outlook_parameters_mailbox.xlsx # Configuration file for mailbox rules
+    ├── outlook_process_log.log       # Log file for email processing
+    ├── requirements.txt              # List of dependencies
 
-Usage
-Steps to Run the Application
-Set Up the Excel File:
+---
 
-Open the outlook_parameters_mailbox.xlsx file.
-Define keywords in the appropriate columns based on your filtering needs (see Excel Configuration for details).
-Run the GUI:
-Launch the GUI by running the Outlook_GUI.py file:
-python Outlook_GUI.py
+## **Logging**
 
+Logs are generated for every action, providing transparency and debugging assistance.
 
-This will open a graphical interface for managing email processing.
-Load the Configuration:
+**Log File**: `outlook_process_log.log`
 
-Use the GUI to load the updated Excel configuration file by selecting it through the interface.
-Start Processing:
+**Log Details**:
+- Records the status of processed emails.
+- Provides details of any errors encountered during execution.
+- Includes performance metrics, such as processing times.
 
-Click "Exécuter une fois" to process emails once.
-Click "Exécuter toutes les 10 minutes" to start periodic processing.
-Close Outlook:
+---
 
-When the script runs, Outlook will automatically close to avoid session conflicts. Emails will be processed in the background.
-Stop Processing:
+## **Support my work**
 
-Click "Arrêter" to stop periodic processing.
-Click "Quitter" to exit the application.
-
-
-Excel Configuration
-The outlook_parameters_mailbox.xlsx file is used to define sorting rules. Configure it as follows:
-
-Folder Destination	Filter_1	Filter_2	Filter_3	Filter_4	Filter_5
-folder/	keyword1	keyword2			
-folder/sub_folder	keyword3				
-Folder Destination: Specify the folder where emails matching the filters should be moved.
-Filter Columns: Define keywords for filtering emails based on the content of PDF attachments.
-
-Repository Structure
-├── LICENSE                       # License file for the project
-├── Outlook_GUI.py                # GUI interface script for the application
-├── README.md                     # Project documentation
-├── company_logo_client.png       # Company logo used in the GUI
-├── core_app.py                   # Core logic of the application
-├── outlook_parameters_mailbox.xlsx # Configuration file for mailbox rules
-├── outlook_process_log.log       # Log file for email processing
-├── requirements.txt              # List of dependencies
-
-
-Logging
-Execution logs are saved in outlook_process_log.log. These logs provide details about:
-
-Successfully processed emails.
-Errors encountered during processing.
-Debugging information for troubleshooting.
-
-
-Licenses
-This project leverages several open-source libraries under permissive licenses, such as:
-
-PyPDF2: BSD License
-EasyOCR: Apache License 2.0
-pandas: BSD License
-pdfplumber: MIT License
-Refer to requirements.txt for the complete list of dependencies and their licenses.
-Project Title: Outlook Automation with PDF Text Extraction with and without OCR
-Automation of Email Processing in Outlook: Extracting Text from PDF Attachments with and without OCR
-
-
---
-if you want to support my work 
-
+### Buy me a Coffe
 <a href="https://buymeacoffee.com/lostmedoulle" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
 
---
-Disclaimer
-This software is provided "as is," without any warranty. Users are responsible for ensuring compliance with data protection laws and handling sensitive information appropriately.
+### Donate Cryptocurrency
 
-Acknowledgments
-Thanks to the developers of the following libraries and tools:
+### **Stablecoin Donations (USDC)**
 
-PyPDF2: For PDF text extraction.
-EasyOCR: For OCR functionality.
-pandas: For data manipulation.
-Tkinter: For building the GUI.
+- **USDC on Ethereum**: `0x87358fF28b29E09037C8068260062742CDeAD671`
+- **USDC on Base Chain**: `0x87358fF28b29E09037C8068260062742CDeAD671`
+- **SOL** : `Gd4ncC2zXuj7ickNHJuHHtAoEKESTYd5FCJzzQwqANWJ`
+
+
