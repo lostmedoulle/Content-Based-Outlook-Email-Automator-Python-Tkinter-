@@ -1,7 +1,6 @@
 **Automating Email Processing in Outlook: Efficiently Extract Text from PDF Attachments with and without OCR**
 
 ![Python](https://img.shields.io/badge/Python-3.x-blue) 
-![License](https://img.shields.io/badge/License-MIT-green) 
 ![Dependencies](https://img.shields.io/badge/Dependencies-Up%20to%20Date-brightgreen)
 ![Build](https://img.shields.io/badge/Build-Passing-brightgreen)
 ![Last Commit](https://img.shields.io/github/last-commit/your-username/your-repository)
